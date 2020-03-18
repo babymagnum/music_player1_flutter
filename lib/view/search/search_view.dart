@@ -103,20 +103,19 @@ class SearchView extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10,),
-            Container(
-              constraints: BoxConstraints(minHeight: 100, maxHeight: 100),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Wrap(
-                  runSpacing: 10,
-                  spacing: 10,
-                  children: List<Widget>.generate(_listCategories.length, (int index) => Chip(
-                    label: Text(_listCategories[index], style: ThemeTextStyle.ubuntuR.apply(fontSizeDelta: -2),),
-                  ),
-                  ).toList(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Wrap(
+                spacing: 5,
+                runSpacing: -10,
+                children: List<Widget>.generate(_listCategories.length, (int index) => Chip(
+                  label: Text(_listCategories[index], style: ThemeTextStyle.ubuntuR.apply(fontSizeDelta: -2),),
                 ),
+                ).toList(),
+                direction: Axis.horizontal,
               ),
-            )
+            ),
+            SizedBox(height: 75,)
           ],
         ),
       ),
