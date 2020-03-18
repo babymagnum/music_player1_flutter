@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Screen1View extends StatelessWidget {
+class AccountView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text('Screen 1'),
+        child: Text('Account View'),
       ),
     );
   }
