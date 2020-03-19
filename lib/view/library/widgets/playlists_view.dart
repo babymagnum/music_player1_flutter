@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dribbble_clone/core/theme/theme_color.dart';
+import 'package:dribbble_clone/view/library/widgets/bottom_sheet_songs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -26,6 +27,15 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
     Future.delayed(Duration.zero, () => _pageController.animateToPage(1, duration: Duration(milliseconds: 200), curve: Curves.easeOut));
 
     super.initState();
+  }
+
+  _showBottomSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return BottomSheetSongs();
+      }
+    );
   }
 
   @override
@@ -57,28 +67,31 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
           value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
         }
 
-        return Center(
-          child: SizedBox(
-            height: Curves.easeOut.transform(value) * 250, width: Curves.easeOut.transform(value) * 230,
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-              child: CachedNetworkImage(
-                imageBuilder: (context, imageProvider) => Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover
+        return GestureDetector(
+          onTap: () => _showBottomSheet(),
+          child: Center(
+            child: SizedBox(
+              height: Curves.easeOut.transform(value) * 250, width: Curves.easeOut.transform(value) * 230,
+              child: ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+                child: CachedNetworkImage(
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover
+                      ),
                     ),
                   ),
-                ),
-                imageUrl: _listImages[index],
-                placeholder: (context, _) => Shimmer.fromColors(
-                  highlightColor: Colors.white,
-                  baseColor: ThemeColor.lightGrey3,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(5)),
-                    child: Container(
-                      color: Colors.blue,
+                  imageUrl: _listImages[index],
+                  placeholder: (context, _) => Shimmer.fromColors(
+                    highlightColor: Colors.white,
+                    baseColor: ThemeColor.lightGrey3,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Container(
+                        color: Colors.blue,
+                      ),
                     ),
                   ),
                 ),
