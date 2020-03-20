@@ -40,7 +40,7 @@ class _HomeViewState extends State<HomeView> {
             right: 20,
             child: Parent(
               style: ParentStyle()..height(55)..borderRadius(all: 55/2)..width(double.infinity)..margin(horizontal: 20)
-                ..background.color(ThemeColor.blackPrimary)..padding(horizontal: 20),
+                ..background.color(Colors.black)..padding(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[

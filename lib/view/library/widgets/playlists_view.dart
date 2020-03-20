@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dribbble_clone/core/theme/theme_color.dart';
+import 'package:dribbble_clone/model/songs.dart';
 import 'package:dribbble_clone/view/library/widgets/bottom_sheet_songs.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -13,13 +14,23 @@ class PlaylistsView extends StatefulWidget {
 class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveClientMixin {
 
   int _currentPage = 0;
-  final PageController _pageController = PageController(viewportFraction: 0.57, initialPage: 0, keepPage: false);
+  final PageController _pageController = PageController(viewportFraction: 0.55, initialPage: 0, keepPage: false);
   List<String> _listImages = [
     'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681',
     'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681',
     'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681',
     'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681',
     'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681',
+  ];
+  List<Songs> _listSongs = [
+    Songs('Loco Contigo', 'https://d2tml28x3t0b85.cloudfront.net/tracks/artworks/001/068/945/original/a6703e.jpeg?1561539681', 'Dj Snake & J Balvin'),
+    Songs('Milionaria', 'https://media.pitchfork.com/photos/5d1cf95f304621000999709d/1:1/w_160/Rosalia.jpg', 'Rosalia'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
+    Songs('Meaning', 'https://24hourhiphop.com/wp-content/uploads/2020/02/maxresdefault-468.jpg', 'Con Altura'),
   ];
 
   @override
@@ -32,12 +43,8 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
   _showBottomSheet() {
     showBottomSheet(
       context: context,
-      //isScrollControlled: true,
-      //barrierColor: Colors.black.withAlpha(1),
       backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
-        return BottomSheetSongs();
-      }
+      builder: (BuildContext context) => BottomSheetSongs(listSongs: _listSongs)
     );
   }
 
@@ -47,7 +54,7 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
       children: <Widget>[
         SizedBox(height: 20,),
         Container(
-          height: 300,
+          height: MediaQuery.of(context).size.height * 0.3,
           child: PageView.builder(
             itemCount: _listImages.length,
             controller: _pageController,
@@ -74,7 +81,7 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
           onTap: () => _showBottomSheet(),
           child: Center(
             child: SizedBox(
-              height: Curves.easeOut.transform(value) * 250, width: Curves.easeOut.transform(value) * 230,
+              height: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.3, width: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.35 - 20,
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: CachedNetworkImage(
