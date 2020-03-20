@@ -30,8 +30,11 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
   }
 
   _showBottomSheet() {
-    showModalBottomSheet(
+    showBottomSheet(
       context: context,
+      //isScrollControlled: true,
+      //barrierColor: Colors.black.withAlpha(1),
+      backgroundColor: Colors.transparent,
       builder: (BuildContext context) {
         return BottomSheetSongs();
       }

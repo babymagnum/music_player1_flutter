@@ -6,26 +6,25 @@ class BottomSheetSongs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          Parent(
-            style: ParentStyle()..width(50)..height(8)..borderRadius(all: 4)..background.color(ThemeColor.grey),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: <Widget>[
+        Parent(
+          style: ParentStyle()..width(50)..height(8)..borderRadius(all: 4)..background.color(ThemeColor.grey),
+        ),
+        SizedBox(height: 5),
+        Parent(
+          style: ParentStyle()..background.color(ThemeColor.blackPrimary)..borderRadius(topLeft: 10, topRight: 10)..width(double.infinity),
+          child: Column(
+            children: <Widget>[
+              Text('tes', style: TextStyle(color: Colors.white),),
+              Text('tes', style: TextStyle(color: Colors.white),),
+              Text('tes', style: TextStyle(color: Colors.white),),
+              Text('tes', style: TextStyle(color: Colors.white),),
+            ],
           ),
-          SizedBox(height: 5,),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 16),
-            color: Colors.red,
-            child: Column(
-              children: <Widget>[
-                Text('tes', style: TextStyle(color: Colors.white),)
-              ],
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }
