@@ -63,6 +63,7 @@ class _HomeViewState extends State<HomeView> {
                   GestureDetector(
                     onTap: () => onItemTapped(4),
                     child: PlaceholderNetworkImage(
+                      isFill: false,
                       url: 'https://lh3.googleusercontent.com/proxy/xwyY0Rv0HhTaj49_ul1e1qgc0g6VgdsKci0NDd2FQfpyyXMAAyhrsm5gLj1gqpdjIjCLAKGAq8wIEgousKvxi_ZCQHSOiWi9JCBTd2HyrsMB67pdiR87zIZE11MIdhi1CovVxSHq2bk',
                       size: Size(25, 25),
                       borderRadius: 25/2,

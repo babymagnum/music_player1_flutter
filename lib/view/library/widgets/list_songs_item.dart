@@ -18,7 +18,7 @@ class ListSongsItem extends StatelessWidget {
       style: ParentStyle()..margin(top: 20, bottom: isLast ? 110 : 0)..ripple(true)..borderRadius(all: 5),
       child: Row(
         children: <Widget>[
-          PlaceholderNetworkImage(url: item.image, size: Size(60, 60), borderRadius: 5,),
+          PlaceholderNetworkImage(isFill: false, url: item.image, size: Size(60, 60), borderRadius: 5,),
           SizedBox(width: 13,),
           Expanded(
             child: Column(

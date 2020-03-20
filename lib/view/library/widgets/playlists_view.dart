@@ -58,7 +58,9 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
           child: PageView.builder(
             itemCount: _listImages.length,
             controller: _pageController,
-            onPageChanged: (value) => setState(() => _currentPage = value),
+            onPageChanged: (value) {
+              setState(() => _currentPage = value);
+            },
             itemBuilder: (_, index) => _carouselItem(index)
           ),
         )

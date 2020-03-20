@@ -5,11 +5,12 @@ import 'package:shimmer/shimmer.dart';
 
 class PlaceholderNetworkImage extends StatelessWidget {
 
-  PlaceholderNetworkImage({Key key, this.url, this.size, this.borderRadius}): super (key: key);
+  PlaceholderNetworkImage({Key key, this.url, this.size, this.borderRadius, this.isFill}): super (key: key);
 
   final String url;
   final Size size;
   final double borderRadius;
+  final bool isFill;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class PlaceholderNetworkImage extends StatelessWidget {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: imageProvider,
-              fit: BoxFit.cover
+              fit: isFill ? BoxFit.fill : BoxFit.cover
             ),
           ),
         ),
