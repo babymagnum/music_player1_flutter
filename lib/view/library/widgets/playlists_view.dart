@@ -13,6 +13,7 @@ class PlaylistsView extends StatefulWidget {
 
 class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveClientMixin {
 
+  var _scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentPage = 0;
   final PageController _pageController = PageController(viewportFraction: 0.55, initialPage: 0, keepPage: false);
   List<String> _listImages = [
@@ -43,28 +44,38 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
   _showBottomSheet() {
     showBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
-      builder: (BuildContext context) => BottomSheetSongs(listSongs: _listSongs)
+      builder: (context) => GestureDetector(
+        onPanUpdate: (details) {
+          print('update location ${details.delta.dy}');
+        },
+        child: BottomSheetSongs(listSongs: _listSongs),
+      ),
+      backgroundColor: Colors.transparent
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 20,),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.3,
-          child: PageView.builder(
-            itemCount: _listImages.length,
-            controller: _pageController,
-            onPageChanged: (value) {
-              setState(() => _currentPage = value);
-            },
-            itemBuilder: (_, index) => _carouselItem(index)
-          ),
-        )
-      ],
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Colors.black,
+      body: Column(
+        children: <Widget>[
+          SizedBox(height: 20,),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: PageView.builder(
+              itemCount: _listImages.length,
+              controller: _pageController,
+              onPageChanged: (value) {
+                setState(() => _currentPage = value);
+                _showBottomSheet();
+              },
+              itemBuilder: (_, index) => _carouselItem(index)
+            ),
+          )
+        ],
+      ),
     );
   }
 

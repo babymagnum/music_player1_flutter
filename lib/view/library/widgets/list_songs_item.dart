@@ -15,6 +15,7 @@ class ListSongsItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Parent(
+      gesture: Gestures()..onTap(() => print('list song tapped')),
       style: ParentStyle()..margin(top: 20, bottom: isLast ? 110 : 0)..ripple(true)..borderRadius(all: 5),
       child: Row(
         children: <Widget>[
