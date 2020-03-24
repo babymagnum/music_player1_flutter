@@ -88,32 +88,37 @@ class _PlaylistsViewState extends State<PlaylistsView> with AutomaticKeepAliveCl
         if (_pageController.position.haveDimensions) {
           value = _pageController.page - index;
           value = (1 - (value.abs() * 0.3)).clamp(0.0, 1.0);
+          print('value $value');
         }
 
-        return GestureDetector(
-          onTap: () => _showBottomSheet(),
-          child: Center(
-            child: SizedBox(
-              height: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.3, width: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.35 - 20,
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-                child: CachedNetworkImage(
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover
+        return AnimatedOpacity(
+          opacity: value,
+          duration: Duration(milliseconds: 200),
+          child: GestureDetector(
+            onTap: () => _showBottomSheet(),
+            child: Center(
+              child: SizedBox(
+                height: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.3, width: Curves.easeOut.transform(value) * MediaQuery.of(context).size.height * 0.35 - 20,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  child: CachedNetworkImage(
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover
+                        ),
                       ),
                     ),
-                  ),
-                  imageUrl: _listImages[index],
-                  placeholder: (context, _) => Shimmer.fromColors(
-                    highlightColor: Colors.white,
-                    baseColor: ThemeColor.lightGrey3,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
-                      child: Container(
-                        color: Colors.blue,
+                    imageUrl: _listImages[index],
+                    placeholder: (context, _) => Shimmer.fromColors(
+                      highlightColor: Colors.white,
+                      baseColor: ThemeColor.lightGrey3,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(5)),
+                        child: Container(
+                          color: Colors.blue,
+                        ),
                       ),
                     ),
                   ),
